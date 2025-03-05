@@ -3,6 +3,6 @@ package com.zeyang.login.entity;
 /**
  * zeyang
  */
-public enum UserStatu {
+public enum UserStatus {
     ACTIVE, INACTIVE, DELETED
 }

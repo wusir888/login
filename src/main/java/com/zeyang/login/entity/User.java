@@ -52,7 +52,7 @@ public class User {
     @Column(name = "status",
             nullable = false,
             columnDefinition = "ENUM('ACTIVE','LOCKED','DISABLED') DEFAULT 'ACTIVE'")
-    private UserStatu status = UserStatu.ACTIVE;
+    private UserStatus status = UserStatus.ACTIVE;
 
     @Column(name = "failed_attempts",
             columnDefinition = "INT DEFAULT 0")

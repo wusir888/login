@@ -1,2 +1,9 @@
+com\zeyang\login\controller\UserController.class
+com\zeyang\login\entity\AuthLog.class
+com\zeyang\login\entity\UserStatus.class
+com\zeyang\login\config\OpenApiConfig.class
+com\zeyang\login\entity\AuthAction.class
+com\zeyang\login\entity\User.class
+com\zeyang\login\repository\UserRepository.class
 com\zeyang\login\LoginApplication.class
-com\zeyang\login\entity\Users.class
+com\zeyang\login\service\UserService.class
