@@ -53,6 +53,28 @@ public class UserService {
         return userRepository.save(user);
     }
     
+    @Transactional
+    public User createUser(User user) {
+        // 检查用户名是否已存在
+        if (userRepository.findByUsername(user.getUsername()) != null) {
+            throw new RuntimeException("用户名已存在");
+        }
+        
+        // 生成随机盐
+        String salt = generateSalt();
+        user.setSalt(salt);
+        
+        // 使用盐和密码生成哈希
+        String passwordHash = hashPassword(user.getPasswordHash(), salt);
+        user.setPasswordHash(passwordHash);
+        
+        // 设置默认状态
+        user.setStatus(UserStatus.ACTIVE);
+        user.setFailedAttempts(0);
+        
+        return userRepository.save(user);
+    }
+    
     public boolean verifyPassword(User user, String password) {
         String hashedPassword = hashPassword(password, user.getSalt());
         return hashedPassword.equals(user.getPasswordHash());
@@ -76,5 +98,9 @@ public class UserService {
         } catch (Exception e) {
             throw new RuntimeException("密码加密失败", e);
         }
+    }
+
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 }
